@@ -35,7 +35,7 @@
     .login-container h2 {
       margin-bottom: 20px;
       font-size: xx-large;
-      color: rgb(8, 8, 8);
+      color: rgb(0, 0, 0);
     }
 
     .login-container input {
@@ -65,7 +65,7 @@
     }
 
     .login-container button:hover {
-      background: #333944;
+      background: #090909;
       transform: scale(1.03);
     }
 
@@ -83,20 +83,23 @@
 
     .success {
       color: rgb(10, 217, 10);
+      cursor: wait;
     }
-
+    
     .error {
       color: rgb(255, 0, 0);
     }
   </style>
 </head>
+
 <body>
   <div class="login-container">
-    <h2>Login</h2>
+    <h2>Criar Conta</h2>
     <input type="text" id="username" placeholder="Usuário">
     <input type="password" id="password" placeholder="Senha">
     <button onclick="login()">Entrar</button>
     <div class="message" id="message"></div>
+
   </div>
 
   <script>
