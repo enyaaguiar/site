@@ -6,23 +6,21 @@
   <title>Sistema de Login</title>
   <style>
     body {
-      margin: 0;
-      height: 100vh;
-      font-family: 'Times New Roman', serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      background:linear-gradient(to bottom, #55248d, #2575fc);
-      animation: mexeFundo 3s ease-in-out infinite alternate;
-      background-size: 100% 200%;
-      color: #fff;
-    }
-    @keyframes mexeFundo {
+    margin: 0;
+    height: 100vh;
+    font-family: 'Times New Roman', serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    background: linear-gradient(to bottom, #480f53, #2575fc, #4b0082);
+    background-size: 100% 300%;
+    animation: mexeMexa 6s ease-in-out infinite alternate;
+}
+    @keyframes mexeMexa {
       0% { background-position: top; }
       100% { background-position: bottom; }
-      
-      
     }
 
     .login-container {
@@ -92,6 +90,7 @@
       color: rgb(10, 217, 10);
       cursor: wait;
     }
+    
     .error {
       color: rgb(255, 0, 0);
     }
