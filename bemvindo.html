@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -11,18 +10,16 @@
       height: 100vh;
       font-family: 'Times New Roman', serif;
       display: flex;
-      flex-direction: column;
       justify-content: center;
+      flex-direction: column;
       align-items: center;
       text-align: center;
       color: white;
-      background: linear-gradient(to bottom, #55248d, #2575fc);
-      background-size: 100% 200%;
-      animation: rodaJequiti 3s ease-in-out infinite alternate;
-      background-size: cover;
+      background: linear-gradient(to bottom, #8a2be2, #20b2aa, #4b0082);
+      background-size: 100% 300%;
+      animation: rodaJequiti 5s ease-in-out infinite alternate;
+      overflow: hidden;
     }
-    
-
 
     @keyframes rodaJequiti {
       0% { background-position: top; }
@@ -30,13 +27,12 @@
     }
 
     .container {
-    background: rgba(3, 3, 3, 0.7); 
-    padding: 12px;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    color: white;
-}
-
+      background: rgba(3, 3, 3, 0.7);
+      padding: 12px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      color: white;
+    }
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(-20px); }
@@ -49,55 +45,97 @@
       margin: 20px 0;
       animation: fadeIn 1s ease-in-out;
     }
+
     li {
-      background: rgba(3, 3, 3, 0.7); ;
+      background: rgba(3, 3, 3, 0.7);
       margin: 10px 0;
       padding: 12px;
       border-radius: 8px;
       cursor: pointer;
       transition: background 0.3s, transform 0.2s;
+      font-family: 'Times New Roman', serif;
+      color: rgb(244, 244, 245);
     }
 
-    a {
+    li:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: scale(1.05);
+    }
+
+    .btn {
       display: inline-block;
       margin-top: 20px;
       padding: 12px 20px;
-      color: rgb(238, 230, 230);
+      border-radius: 8px;
+      color: #eee;
       font-size: 16px;
-      font-family: 'Arial, sans-serif';
+      font-family: 'Times New Roman', Times, serif;
       font-weight: bold;
       text-decoration: none;
       transition: background 0.3s, transform 0.2s;
       transform: scale(1);
+      background: rgba(3, 3, 3, 0.7);
     }
 
-    a:hover {
-      background: #000000;
+    .btn:hover {
+      background: rgba(255, 255, 255, 0.1);
       transform: scale(1.05);
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 14px;
+      color: #ddd;
     }
   </style>
 </head>
 <body>
   <header>
-  <div class="container">
-    <h1>Tecnocursos - Cursos de Tecnologia</h1>
-    </div> </header>
-    <ul>
-      <li onclick="carregarCurso('HTML')">Curso de HTML e CSS</li>
-      <li onclick="carregarCurso('CSS')">Curso de Banco de Dados</li>
-      <li onclick="carregarCurso('JavaScript')">Curso de JavaScript</li>
-      <li onclick="carregarCurso('Python')">Curso de Python</li>
-      </ul>
-      <div id="detalhes"></div>
-      <a href="login.html" >Voltar</a>
-      </ul>
-<footer>
-  &copy; 2025 Tecnolocursos. Todos os direitos reservados.
-  <p>Telefone:(31)9876542</p>
-    
-  </div>
+    <div class="container">
+      <h1>Tecnocursos - Cursos de Tecnologia</h1>
+    </div>
+  </header>
+
+  <ul>
+   <li onclick="carregarCurso('HTML e CSS')">Curso de HTML e CSS</li>
+  <li onclick="carregarCurso('Banco de Dados')">Curso de Banco de Dados</li>
+  <li onclick="carregarCurso('JavaScript')">Curso de JavaScript</li>
+  <li onclick="carregarCurso('Python')">Curso de Python</li>
+
+  </ul>
+
+  <div id="detalhes"></div>
+
+  <a href="login.html" class="btn">Voltar para Login</a>
+
+  <footer>
+    <p>&copy; 2025 Tecnocursos. Todos os direitos reservados.</p>
+    <p>Telefone: (31) 98765-42</p>
   </footer>
+
   <script>
+   async function carregarCurso(curso) {
+  const detalhesDiv = document.getElementById('detalhes');
+
+  try {
+    detalhesDiv.innerHTML = "<p>Carregando detalhes do curso...</p>";
+
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
+    let mensagens = {
+      "JavaScript": "O curso de JavaScript vai te ensinar a criar sites dinâmicos e interativos, além de desenvolver aplicações web completas.",
+      "HTML e CSS": "O curso de HTML e CSS vai te mostrar como estruturar e estilizar páginas web de forma profissional.",
+      "Banco de Dados": "O curso de Banco de Dados vai te ensinar a armazenar, gerenciar e consultar dados de forma eficiente.",
+      "Python": "O curso de Python vai te introduzir à programação com uma linguagem versátil e poderosa, ideal para iniciantes e profissionais."
+    };
+
+    detalhesDiv.innerHTML = mensagens[curso] || "Detalhes do curso não encontrados.";
+
+  } catch (error) {
+    detalhesDiv.innerHTML = "Erro: " + error.message;
+    console.error("Erro ao carregar detalhes do curso:", error);
+  }
+}
 
   </script>
 </body>
