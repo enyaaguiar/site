@@ -115,10 +115,10 @@
 
   <script>
    async function carregarCurso(curso) {
-  const detalhesDiv = document.getElementById('detalhes');
+  const celsoDiv = document.getElementById('detalhes');
 
   try {
-    detalhesDiv.innerHTML = "<p>Carregando detalhes do curso...</p>";
+    celsoDiv.innerHTML = "<p>Carregando detalhes do curso...</p>";
 
     await new Promise(resolve => setTimeout(resolve, 2000));
 
@@ -129,10 +129,10 @@
       "Python": "O curso de Python vai te introduzir à programação com uma linguagem versátil e poderosa, ideal para iniciantes e profissionais."
     };
 
-    detalhesDiv.innerHTML = mensagens[curso] || "Detalhes do curso não encontrados.";
+    celsoDiv.innerHTML = mensagens[curso] || "Detalhes do curso não encontrados.";
 
   } catch (error) {
-    detalhesDiv.innerHTML = "Erro: " + error.message;
+    celsoDiv.innerHTML = "Erro: " + error.message;
     console.error("Erro ao carregar detalhes do curso:", error);
   }
 }
