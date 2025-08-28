@@ -6,97 +6,76 @@
   <title>Sistema de Login</title>
   <style>
     body {
-    margin: 0;
-    height: 100vh;
-    font-family: 'Times New Roman', serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: #fff;
-    background: linear-gradient(to bottom, #480f53, #2575fc, #4b0082);
-    background-size: 100% 300%;
-    animation: mexeMexa 6s ease-in-out infinite alternate;
-}
+      margin: 0;
+      height: 100vh;
+      font-family: 'Times New Roman', serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #131313;
+      background: linear-gradient(to bottom, #6a11cb, #2575fc, #1d0437);
+      background-size: 100% 200%;
+      animation: mexeMexa 6s ease-in-out infinite alternate;
+    }
+
     @keyframes mexeMexa {
       0% { background-position: top; }
       100% { background-position: bottom; }
     }
 
     .login-container {
-      background: #faf9f9;
-      padding: 30px;
+      background: #fff;
+      padding: 40px;
       border-radius: 20px;
-      width: 250px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      width: 320px;
       text-align: center;
-      color: white;
-      box-shadow: 
-        0 0 10px #7f209f,
-        0 0 20px #9b35c6,
-        0 0 30px #b54de0,
-        0 0 40px #d07aff;
     }
 
     .login-container h2 {
       margin-bottom: 20px;
       font-size: xx-large;
-      color: rgb(0, 0, 0);
+      color: #080707;
     }
 
-    .login-container input {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 8px;
-      border: 1px solid #460965;
-      font-size: 14px;
-      box-sizing: border-box;
-      outline: none;
-      transition: box-shadow 0.3s;
-    }
-
+    .login-container input,
     .login-container button {
       width: 100%;
       padding: 12px;
-      background: #6a11cb;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #000000;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    .login-container button {
+      background: #1223e0;
       color: white;
-      font-size: 15px;
+      font-size: 16px;
       font-weight: bold;
       border: none;
-      border-radius: 10px;
       cursor: pointer;
-      transition: background 0.3s, transform 0.2s;
-      margin-top: 10px;
+      transition: background 0.3s;
     }
 
     .login-container button:hover {
-      background: #090909;
-      transform: scale(1.03);
+      background: #333944;
     }
 
     .message {
       margin-top: 15px;
       font-size: 14px;
       font-weight: bold;
-      opacity: 0;
-      transition: opacity 0.8s ease-in-out;
+      display: none;
     }
 
-    .message.show {
-      opacity: 1;
-    }
-
-    .success {
-      color: rgb(10, 217, 10);
-      cursor: wait;
-    }
-    
-    .error {
-      color: rgb(255, 0, 0);
-    }
+    .success { color: green; }
+    .error { color: red; }
   </style>
 </head>
-
 <body>
   <div class="login-container">
     <h2>Login</h2>
@@ -104,60 +83,47 @@
     <input type="password" id="password" placeholder="Senha">
     <button onclick="login()">Entrar</button>
     <div class="message" id="message"></div>
-
   </div>
 
   <script>
-    const usuarios = ["admin", "diogo", "enya", "rafael", "lucy"];
-    const senhas   = ["12345", "dasrave", "type", "junior", "senha123"];
+    const usuarios = ["admin", "diogo", "enya", "rafael", "joao"];
+    const senhas = ["12345", "dasrave","type","junior","senha123"];
 
     function login() {
-      const usuario = document.getElementById("username").value.trim();
-      const senha   = document.getElementById("password").value.trim();
+      const usuario = document.getElementById("username").value;
+      const senha = document.getElementById("password").value;
       const mensagem = document.getElementById("message");
 
       let loginValido = false;
-
       for (let i = 0; i < usuarios.length; i++) {
-        if (
-          usuario.toLowerCase() === usuarios[i].toLowerCase() &&
-          senha.toLowerCase() === senhas[i].toLowerCase()
-        ) {
+        if (usuario === usuarios[i] && senha === senhas[i]) {
           loginValido = true;
           break;
         }
       }
 
-      mensagem.classList.remove("success", "error");
-      mensagem.classList.remove("show");
-
       if (loginValido) {
-        mensagem.textContent = "✓ Login realizado com sucesso! Redirecionando...";
-        mensagem.classList.add("success", "show");
-        mensagem.classList.remove("error");
+        mensagem.textContent = "✅ Login realizado com sucesso! Redirecionando...";
+        mensagem.className = "message success";
+        mensagem.style.display = "block";
 
         setTimeout(() => {
-          mensagem.classList.remove("show");
-          document.getElementById("username").value = "";
-          document.getElementById("password").value = ""; 
-          window.location.href = "bemvindo.html";
+          mensagem.textContent = "";
+          window.location.href = "bemvindo.html"; 
         }, 3000);
       } else {
-        mensagem.textContent = "🚫 Usuário ou senha incorretos!";
-        mensagem.classList.add("error", "show");
-        mensagem.classList.remove("success");
+        mensagem.textContent = "❌ Usuário ou senha incorretos!";
+        mensagem.className = "message error";
+        mensagem.style.display = "block"; 
 
         setTimeout(() => {
-          mensagem.classList.remove("show");
-          document.getElementById("username").value = "";
-          document.getElementById("password").value = ""; 
+          mensagem.style.display = "none"; 
+          mensagem.textContent = ""; 
+          document.getElementById("username").value = "";  
+          document.getElementById("password").value = "";  
         }, 3000);
       }
     }
-
-    document.addEventListener("keypress", function(e) {
-      if (e.key === "Enter") login();
-    });
   </script>
 </body>
 </html>
